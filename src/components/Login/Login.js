@@ -1,16 +1,35 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import LanguageIcon from "@mui/icons-material/Language";
 import ButtonPrimary from "../ButtonPrimary/ButtonPrimary";
 import ButtonSecondary from "../ButtonSecondary/ButtonSecondary";
+import { useDispatch } from "react-redux/es/exports";
+import { login } from "../../features/counter/userSlice";
+import { auth } from "../../firebase";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const SignIn = (e) => {
     e.preventDefault();
+
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userAuth) => {
+        dispatch(
+          login({
+            email: userAuth.user.email,
+            uid: userAuth.user.uid,
+            displayName: userAuth.user.displayName,
+          })
+        );
+        navigate.push("/teslaaccount");
+      })
+      .catch((error) => alert(error.message));
   };
 
   return (
@@ -47,7 +66,7 @@ function Login() {
           />
           <ButtonPrimary name="Sign In" type="submit" onClick={SignIn} />
         </form>
-        <div className='login__divider'>
+        <div className="login__divider">
           <hr />
           <span>OR</span>
           <hr />
