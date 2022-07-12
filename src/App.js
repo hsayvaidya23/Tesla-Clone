@@ -12,6 +12,8 @@ import HeaderBlock from "./components/HeaderBlock/HeaderBlock";
 import Login from "./components/Login/Login";
 import { useSelector } from "react-redux";
 import { selectUser } from "./features/counter/userSlice";
+import SignUp from "./components/SignUp/SignUp";
+
 //eslint-disable-next-line
 
 function App() {
@@ -39,10 +41,10 @@ function App() {
             element={
               <>
                 { user ? render => {<Navigate to='/teslaaccount'/>} : <Login />}
-                <Login />
               </>
             }
           />
+          <Route exact path='/signup' element={<SignUp />} />
         </Routes>
       </div>
     </Router>

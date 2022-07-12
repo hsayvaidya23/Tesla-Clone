@@ -27,7 +27,7 @@ function Login() {
             displayName: userAuth.user.displayName,
           })
         );
-        navigate.push("/teslaaccount");
+        navigate("/teslaaccount");
       })
       .catch((error) => alert(error.message));
   };
