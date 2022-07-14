@@ -13,6 +13,7 @@ import Login from "./components/Login/Login";
 import { useSelector } from "react-redux";
 import { selectUser } from "./features/counter/userSlice";
 import SignUp from "./components/SignUp/SignUp";
+import TeslaAccount from "./components/TeslaAccount/TeslaAccount";
 
 //eslint-disable-next-line
 
@@ -40,11 +41,38 @@ function App() {
             path="/login"
             element={
               <>
-                { user ? render => {<Navigate to='/teslaaccount'/>} : <Login />}
+                {user ? (
+                  (render) => {
+                    <Navigate to="/teslaaccount" />;
+                  }
+                ) : (
+                  <Login />
+                )}
               </>
             }
           />
-          <Route exact path='/signup' element={<SignUp />} />
+          <Route exact path="/signup" element={<SignUp />} />
+          <Route
+            exact
+            path="/teslaaccount"
+            element={
+              <>
+                {user ? (
+                  (render) => {
+                    <Navigate to="/login" />;
+                  }
+                ) : (
+                  <>
+                    <TeslaAccount
+                      isMenuOpen={isMenuOpen}
+                      setIsMenuOpen={setIsMenuOpen}
+                    />
+                    {isMenuOpen && <Menu />}
+                  </>
+                )}
+              </>
+            }
+          />
         </Routes>
       </div>
     </Router>
