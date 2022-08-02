@@ -24,13 +24,13 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    auth.onAuthStateChanged(((userAuth)=> {
-      if(userAuth) {
+    auth.onAuthStateChanged(((userAuth) => {
+      if (userAuth) {
         // User is signed in
         dispatch(login({
-          email:userAuth.email,
-          uid:userAuth.uid,
-          displayName:userAuth.displayName,
+          email: userAuth.email,
+          uid: userAuth.uid,
+          displayName: userAuth.displayName,
         }))
 
       }
@@ -40,7 +40,7 @@ function App() {
       }
     }))
   }, [dispatch])
-  
+
 
   return (
     <Router>
@@ -52,7 +52,7 @@ function App() {
             element={
               <>
                 <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-                {isMenuOpen && <Menu />}
+                {isMenuOpen ? <Menu /> : <></>}
                 <HeaderBlock />
               </>
             }
@@ -62,13 +62,11 @@ function App() {
             path="/login"
             element={
               <>
-                {user ? (
-                  (render) => {
-                    <Navigate to="/teslaaccount" />;
-                  }
-                ) : (
-                  <Login />
-                )}
+                {user ?
+                  <Navigate to="/teslaaccount" />
+                : 
+                <Login />
+                }
               </>
             }
           />
@@ -78,19 +76,17 @@ function App() {
             path="/teslaaccount"
             element={
               <>
-                {(!user) ? (
-                  (render) => {
-                    <Navigate to="/login" />;
-                  }
-                ) : (
+                {(user) ? 
                   <>
                     <TeslaAccount
                       isMenuOpen={isMenuOpen}
                       setIsMenuOpen={setIsMenuOpen}
                     />
-                    {isMenuOpen && <Menu />}
-                  </>
-                )}
+                    {isMenuOpen ? <Menu /> : <></>}
+                  </> 
+                 : 
+                  <Navigate to="/login" />
+                }
               </>
             }
           />
