@@ -1,0 +1,73 @@
+.error-container {
+    font-weight: 300;
+    padding: 150px 0;
+    text-align: center;
+    line-height: 1.25;
+}
+
+.error-container .error-code {
+    font-size: 47px;
+    margin-bottom: 10px;
+}
+
+.error-container .error-text {
+    font-size: 27px;
+    margin-bottom: 50px;
+}
+
+.error-container .error-menu ul {
+    -ms-flex-align: center;
+    align-items: center;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-pack: center;
+    justify-content: center;
+    list-style: none;
+}
+
+.error-container .error-menu ul li {
+    display: inline;
+    margin: 0;
+    max-width: 75ch;
+    box-sizing: border-box;
+}
+
+.error-container .error-menu ul li a {
+    color: #666;
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    text-decoration: none;
+    text-align: initial;
+    color: #393c41;
+    color: var(--tds-color--grey20);
+    font-family: 'HeiT ASC Traditional Chinese','M Hei PRC W45','AXIS Font Japanese W55','FB New Gothic','Gotham Book',system,sans-serif;
+    font-family: var(--tds-font-combined);
+    transition: box-shadow .25s cubic-bezier(.5,.25,.25,.75),color .25s cubic-bezier(.5,.25,.25,.75);
+    box-shadow: 0 1px 0 0 currentColor;
+    box-shadow: 0 var(--tds-border-width--small) 0 0 currentColor;
+}
+
+.error-container .error-menu ul li a::after {
+    content: "";
+    display: block;
+    width: auto;
+    text-decoration: underline;
+    padding: 2px;
+    border-bottom: 1px solid black;
+}
+
+
+@media (min-width: 640px)
+.hide-on-desk {
+    display: none !important;
+}
