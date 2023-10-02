@@ -15,6 +15,7 @@ import { login, logout, selectUser } from "./features/counter/userSlice";
 import SignUp from "./components/SignUp/SignUp";
 import TeslaAccount from "./components/TeslaAccount/TeslaAccount";
 import { auth } from "./firebase";
+import NotFound from "./components/Error/NotFound";
 
 //eslint-disable-next-line
 
@@ -87,6 +88,17 @@ function App() {
                  : 
                   <Navigate to="/login" />
                 }
+              </>
+            }
+          />
+          <Route
+            exact
+            path="*"
+            element={
+              <>
+                <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+                {isMenuOpen ? <Menu /> : <></>}
+                <NotFound />
               </>
             }
           />
